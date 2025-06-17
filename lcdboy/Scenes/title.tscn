@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://c50tbbvk4mc6y"]
+
+[ext_resource type="Script" uid="uid://cb32kqm2ksh0c" path="res://Scripts/title.gd" id="1_w31pl"]
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_w31pl")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 80.0
+offset_right = 220.0
+offset_bottom = 103.0
+text = "LCD BOY"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 112.0
+offset_right = 236.0
+offset_bottom = 135.0
+text = "Press Start"
