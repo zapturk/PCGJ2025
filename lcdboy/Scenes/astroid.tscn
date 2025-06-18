@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://comqt0fc7caoj"]
+
+[ext_resource type="Texture2D" uid="uid://bnk680agufnld" path="res://Images/astroid.png" id="1_nni62"]
+[ext_resource type="Script" uid="uid://cynicgma3dmyk" path="res://Scripts/astroid.gd" id="1_ra0cc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ra0cc"]
+atlas = ExtResource("1_nni62")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88fj7"]
+atlas = ExtResource("1_nni62")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kfoud"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ra0cc")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88fj7")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[node name="Astroid" type="Node2D"]
+script = ExtResource("1_ra0cc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kfoud")
+animation = &"on"

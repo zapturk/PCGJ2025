@@ -1,3 +1,24 @@
-[gd_scene format=3 uid="uid://di1764mxkhlti"]
+[gd_scene load_steps=4 format=3 uid="uid://di1764mxkhlti"]
+
+[ext_resource type="Texture2D" uid="uid://dhg6e85wb1g04" path="res://Images/LCDBoy.png" id="1_5k3ys"]
+[ext_resource type="PackedScene" uid="uid://c8hik5csgggg0" path="res://Scenes/astroid_holder.tscn" id="1_raf04"]
+[ext_resource type="PackedScene" uid="uid://comqt0fc7caoj" path="res://Scenes/astroid.tscn" id="2_axs6p"]
 
 [node name="debug" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(200, 112.5)
+texture = ExtResource("1_5k3ys")
+
+[node name="AstroidHolder" parent="." instance=ExtResource("1_raf04")]
+
+[node name="Astroid" parent="AstroidHolder" instance=ExtResource("2_axs6p")]
+position = Vector2(128, 128)
+
+[node name="Astroid2" parent="AstroidHolder" instance=ExtResource("2_axs6p")]
+position = Vector2(192, 128)
+rotation = 1.5708
+
+[node name="Astroid3" parent="AstroidHolder" instance=ExtResource("2_axs6p")]
+position = Vector2(256, 128)
+rotation = 3.14159

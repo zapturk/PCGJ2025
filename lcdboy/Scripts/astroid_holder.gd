@@ -10,7 +10,19 @@ func _ready() -> void:
 
 
 func _on_timer_timeout() -> void:
+	if currentSpot == 0:
+		currentSpot += 1
+		astroids[currentSpot].turnOn()
+		$Timer.start()
+		return
+		
+	astroids[currentSpot].turnOff()
 	
+	if currentSpot == get_child_count() -1:
+		currentSpot = 0
+	else:
+		currentSpot += 1
+		astroids[currentSpot].turnOn()
+		
 	
-	astroids[currentSpot].on = true
-	
+	$Timer.start()
