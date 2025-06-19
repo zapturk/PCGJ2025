@@ -1,10 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://di1764mxkhlti"]
+[gd_scene load_steps=33 format=3 uid="uid://di1764mxkhlti"]
 
 [ext_resource type="Texture2D" uid="uid://dhg6e85wb1g04" path="res://Images/LCDBoy.png" id="1_5k3ys"]
 [ext_resource type="Script" uid="uid://b5oj5gipctqvw" path="res://Scripts/debug.gd" id="1_6fqrn"]
 [ext_resource type="Script" uid="uid://dqrnusd83ehkj" path="res://Scripts/player.gd" id="2_5k3ys"]
 [ext_resource type="Texture2D" uid="uid://ccexrvxh0gob3" path="res://Images/WaterPlayer.png" id="2_axs6p"]
 [ext_resource type="Texture2D" uid="uid://3lj0676bf8n5" path="res://Images/DemoPlay.png" id="3_h47sb"]
+[ext_resource type="Script" uid="uid://bmfw21v4qytvb" path="res://Scripts/demo_play.gd" id="4_quvyc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ttyd0"]
 atlas = ExtResource("3_h47sb")
@@ -282,10 +283,10 @@ texture = ExtResource("1_5k3ys")
 metadata/_edit_lock_ = true
 
 [node name="DemoPlay" type="AnimatedSprite2D" parent="."]
-position = Vector2(112, 56)
-scale = Vector2(0.5, 0.5)
+position = Vector2(127, 57)
 sprite_frames = SubResource("SpriteFrames_et0t3")
-animation = &"demo"
+animation = &"play"
+script = ExtResource("4_quvyc")
 
 [node name="WaterPlayer" type="Node2D" parent="."]
 script = ExtResource("2_5k3ys")
@@ -309,9 +310,6 @@ animation = &"3"
 position = Vector2(172, 148)
 sprite_frames = SubResource("SpriteFrames_7mwhx")
 animation = &"3"
-
-[node name="Timer" type="Timer" parent="WaterPlayer"]
-wait_time = 0.5
 
 [node name="Timer" type="Timer" parent="."]
 
