@@ -6,8 +6,8 @@ on:
 
 env:
   GODOT_VERSION: 4.4
-  EXPORT_NAME: 
-  PROJECT_PATH: 
+  EXPORT_NAME: LCDBoy
+  PROJECT_PATH: lcdboy
 
 jobs:
   export-windows:

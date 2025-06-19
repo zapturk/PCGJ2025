@@ -1,26 +1,27 @@
-[gd_scene load_steps=33 format=3 uid="uid://di1764mxkhlti"]
+[gd_scene load_steps=34 format=3 uid="uid://di1764mxkhlti"]
 
-[ext_resource type="Texture2D" uid="uid://dhg6e85wb1g04" path="res://Images/LCDBoy.png" id="1_5k3ys"]
-[ext_resource type="Script" uid="uid://b5oj5gipctqvw" path="res://Scripts/debug.gd" id="1_6fqrn"]
-[ext_resource type="Script" uid="uid://dqrnusd83ehkj" path="res://Scripts/player.gd" id="2_5k3ys"]
-[ext_resource type="Texture2D" uid="uid://ccexrvxh0gob3" path="res://Images/WaterPlayer.png" id="2_axs6p"]
-[ext_resource type="Texture2D" uid="uid://3lj0676bf8n5" path="res://Images/DemoPlay.png" id="3_h47sb"]
-[ext_resource type="Script" uid="uid://bmfw21v4qytvb" path="res://Scripts/demo_play.gd" id="4_quvyc"]
+[ext_resource type="Script" uid="uid://b5oj5gipctqvw" path="res://Scripts/rain.gd" id="1_yepur"]
+[ext_resource type="Texture2D" uid="uid://dhg6e85wb1g04" path="res://Images/LCDBoy.png" id="2_n7lvf"]
+[ext_resource type="Texture2D" uid="uid://3lj0676bf8n5" path="res://Images/DemoPlay.png" id="2_rst03"]
+[ext_resource type="Script" uid="uid://bmfw21v4qytvb" path="res://Scripts/demo_play.gd" id="3_n7lvf"]
+[ext_resource type="Texture2D" uid="uid://dhmy1h6lhckbh" path="res://Images/RainBackground.png" id="3_pf7gp"]
+[ext_resource type="Script" uid="uid://dqrnusd83ehkj" path="res://Scripts/player.gd" id="4_pf7gp"]
+[ext_resource type="Texture2D" uid="uid://ccexrvxh0gob3" path="res://Images/WaterPlayer.png" id="5_1coce"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ttyd0"]
-atlas = ExtResource("3_h47sb")
+atlas = ExtResource("2_rst03")
 region = Rect2(0, 16, 64, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mwhx"]
-atlas = ExtResource("3_h47sb")
+atlas = ExtResource("2_rst03")
 region = Rect2(0, 0, 64, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7tuer"]
-atlas = ExtResource("3_h47sb")
+atlas = ExtResource("2_rst03")
 region = Rect2(0, 48, 64, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0xmn"]
-atlas = ExtResource("3_h47sb")
+atlas = ExtResource("2_rst03")
 region = Rect2(0, 32, 64, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_et0t3"]
@@ -59,11 +60,11 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5k3ys"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(0, 72, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fqrn"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(24, 72, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h47sb"]
@@ -86,23 +87,23 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2m1g"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(24, 48, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_quvyc"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(48, 48, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fee55"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(72, 48, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5mfbk"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(96, 48, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_axs6p"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(0, 48, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_suyoq"]
@@ -149,23 +150,23 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h47sb"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(24, 24, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_edppr"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(48, 24, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_suyoq"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(72, 24, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkd8b"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(96, 24, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k4ivx"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(0, 24, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ttyd0"]
@@ -212,23 +213,23 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ra1bg"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(24, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fe6c3"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(48, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jl0j1"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(72, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k4860"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(96, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0q5kk"]
-atlas = ExtResource("2_axs6p")
+atlas = ExtResource("5_1coce")
 region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7mwhx"]
@@ -274,22 +275,26 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="debug" type="Node2D"]
-script = ExtResource("1_6fqrn")
+[node name="Rain" type="Node2D"]
+script = ExtResource("1_yepur")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(200, 112.5)
-texture = ExtResource("1_5k3ys")
+texture = ExtResource("2_n7lvf")
 metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(200, 112)
+texture = ExtResource("3_pf7gp")
 
 [node name="DemoPlay" type="AnimatedSprite2D" parent="."]
 position = Vector2(127, 57)
 sprite_frames = SubResource("SpriteFrames_et0t3")
 animation = &"play"
-script = ExtResource("4_quvyc")
+script = ExtResource("3_n7lvf")
 
 [node name="WaterPlayer" type="Node2D" parent="."]
-script = ExtResource("2_5k3ys")
+script = ExtResource("4_pf7gp")
 
 [node name="Dump" type="AnimatedSprite2D" parent="WaterPlayer"]
 position = Vector2(124, 148)
