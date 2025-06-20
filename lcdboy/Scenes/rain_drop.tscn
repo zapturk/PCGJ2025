@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://76q5dj0ihias"]
+
+[ext_resource type="Texture2D" uid="uid://cwvgsnwchq4fj" path="res://Images/rainDrop.png" id="1_eplc4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_to2f3"]
+atlas = ExtResource("1_eplc4")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erhun"]
+atlas = ExtResource("1_eplc4")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p10dc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to2f3")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erhun")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[node name="RainDrop" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_p10dc")
+animation = &"on"

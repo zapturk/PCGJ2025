@@ -1,63 +1,13 @@
-[gd_scene load_steps=34 format=3 uid="uid://di1764mxkhlti"]
+[gd_scene load_steps=30 format=3 uid="uid://di1764mxkhlti"]
 
 [ext_resource type="Script" uid="uid://b5oj5gipctqvw" path="res://Scripts/rain.gd" id="1_yepur"]
 [ext_resource type="Texture2D" uid="uid://dhg6e85wb1g04" path="res://Images/LCDBoy.png" id="2_n7lvf"]
-[ext_resource type="Texture2D" uid="uid://3lj0676bf8n5" path="res://Images/DemoPlay.png" id="2_rst03"]
-[ext_resource type="Script" uid="uid://bmfw21v4qytvb" path="res://Scripts/demo_play.gd" id="3_n7lvf"]
 [ext_resource type="Texture2D" uid="uid://dhmy1h6lhckbh" path="res://Images/RainBackground.png" id="3_pf7gp"]
 [ext_resource type="Script" uid="uid://dqrnusd83ehkj" path="res://Scripts/player.gd" id="4_pf7gp"]
 [ext_resource type="Texture2D" uid="uid://ccexrvxh0gob3" path="res://Images/WaterPlayer.png" id="5_1coce"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ttyd0"]
-atlas = ExtResource("2_rst03")
-region = Rect2(0, 16, 64, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7mwhx"]
-atlas = ExtResource("2_rst03")
-region = Rect2(0, 0, 64, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7tuer"]
-atlas = ExtResource("2_rst03")
-region = Rect2(0, 48, 64, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l0xmn"]
-atlas = ExtResource("2_rst03")
-region = Rect2(0, 32, 64, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_et0t3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ttyd0")
-}],
-"loop": true,
-"name": &"demo",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7mwhx")
-}],
-"loop": true,
-"name": &"off",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7tuer")
-}],
-"loop": true,
-"name": &"on",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l0xmn")
-}],
-"loop": true,
-"name": &"play",
-"speed": 5.0
-}]
+[ext_resource type="Script" uid="uid://dweb3f74j8gr7" path="res://Scenes/RainStream.gd" id="8_evofg"]
+[ext_resource type="PackedScene" uid="uid://76q5dj0ihias" path="res://Scenes/rain_drop.tscn" id="9_ts53q"]
+[ext_resource type="FontFile" uid="uid://8cgssymq7s7h" path="res://Fonts/Seven Segment.ttf" id="10_evofg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5k3ys"]
 atlas = ExtResource("5_1coce")
@@ -287,12 +237,6 @@ metadata/_edit_lock_ = true
 position = Vector2(200, 112)
 texture = ExtResource("3_pf7gp")
 
-[node name="DemoPlay" type="AnimatedSprite2D" parent="."]
-position = Vector2(127, 57)
-sprite_frames = SubResource("SpriteFrames_et0t3")
-animation = &"play"
-script = ExtResource("3_n7lvf")
-
 [node name="WaterPlayer" type="Node2D" parent="."]
 script = ExtResource("4_pf7gp")
 
@@ -316,6 +260,78 @@ position = Vector2(172, 148)
 sprite_frames = SubResource("SpriteFrames_7mwhx")
 animation = &"3"
 
+[node name="RainStreamLeft" type="Node2D" parent="."]
+script = ExtResource("8_evofg")
+
+[node name="top" parent="RainStreamLeft" instance=ExtResource("9_ts53q")]
+position = Vector2(176, 104)
+
+[node name="middle" parent="RainStreamLeft" instance=ExtResource("9_ts53q")]
+position = Vector2(168, 116)
+
+[node name="bottom" parent="RainStreamLeft" instance=ExtResource("9_ts53q")]
+position = Vector2(167, 134)
+
+[node name="Timer" type="Timer" parent="RainStreamLeft"]
+
+[node name="RainStreamMiddle" type="Node2D" parent="."]
+position = Vector2(256, 48)
+script = ExtResource("8_evofg")
+
+[node name="top" parent="RainStreamMiddle" instance=ExtResource("9_ts53q")]
+position = Vector2(-40, 51)
+
+[node name="middle" parent="RainStreamMiddle" instance=ExtResource("9_ts53q")]
+position = Vector2(-32, 68)
+
+[node name="bottom" parent="RainStreamMiddle" instance=ExtResource("9_ts53q")]
+position = Vector2(-30, 86)
+
+[node name="Timer" type="Timer" parent="RainStreamMiddle"]
+
+[node name="RainStreamRight" type="Node2D" parent="."]
+script = ExtResource("8_evofg")
+
+[node name="top" parent="RainStreamRight" instance=ExtResource("9_ts53q")]
+position = Vector2(256, 100)
+
+[node name="middle" parent="RainStreamRight" instance=ExtResource("9_ts53q")]
+position = Vector2(261, 117)
+
+[node name="bottom" parent="RainStreamRight" instance=ExtResource("9_ts53q")]
+position = Vector2(263, 134)
+
+[node name="Timer" type="Timer" parent="RainStreamRight"]
+
 [node name="Timer" type="Timer" parent="."]
 
+[node name="PlayDemo" type="Label" parent="."]
+offset_left = 96.0
+offset_top = 48.0
+offset_right = 143.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0.180392, 0.172549, 0.231373, 1)
+theme_override_fonts/font = ExtResource("10_evofg")
+theme_override_font_sizes/font_size = 12
+text = "Demo"
+
+[node name="Score" type="Label" parent="."]
+texture_filter = 1
+offset_left = 280.0
+offset_top = 48.0
+offset_right = 305.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.180392, 0.172549, 0.231373, 1)
+theme_override_fonts/font = ExtResource("10_evofg")
+theme_override_font_sizes/font_size = 12
+text = "0000"
+justification_flags = 131
+
+[connection signal="getPoints" from="WaterPlayer" to="." method="_on_water_player_get_points"]
+[connection signal="dropDone" from="RainStreamLeft" to="WaterPlayer" method="_on_rain_stream_left_drop_done"]
+[connection signal="timeout" from="RainStreamLeft/Timer" to="RainStreamLeft" method="_on_timer_timeout"]
+[connection signal="dropDone" from="RainStreamMiddle" to="WaterPlayer" method="_on_rain_stream_middle_drop_done"]
+[connection signal="timeout" from="RainStreamMiddle/Timer" to="RainStreamMiddle" method="_on_timer_timeout"]
+[connection signal="dropDone" from="RainStreamRight" to="WaterPlayer" method="_on_rain_stream_right_drop_done"]
+[connection signal="timeout" from="RainStreamRight/Timer" to="RainStreamRight" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

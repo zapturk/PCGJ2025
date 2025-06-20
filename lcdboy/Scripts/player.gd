@@ -25,6 +25,9 @@ enum playerStates {
 @onready var demoBuffer := 1.0
 @onready var buffer := 0.0
 
+signal getPoints(points: int)
+signal loseLife()
+
 
 func _ready() -> void:
 	allOn()
@@ -71,6 +74,15 @@ func playDump() -> void:
 	left.play("off")
 	middle.play("off")
 	right.play("off")
+	
+	match bucketFillLevel:
+		1:
+			getPoints.emit(2)
+		2:
+			getPoints.emit(6)
+		3: 
+			getPoints.emit(10)
+	
 	bucketFillLevel = 0
 
 func playLeft() -> void:
@@ -125,3 +137,28 @@ func moveRight() -> void:
 			playerState = playerStates.right
 		
 	playCurrentPlayer()
+
+func _on_rain_stream_left_drop_done() -> void:
+	if playerState == playerStates.left && bucketFillLevel < 3:
+		bucketFillLevel += 1
+		playCurrentPlayer()
+		getPoints.emit(1)
+	else:
+		loseLife.emit()
+
+func _on_rain_stream_middle_drop_done() -> void:
+	if playerState == playerStates.middle && bucketFillLevel < 3:
+		bucketFillLevel += 1
+		playCurrentPlayer()
+		getPoints.emit(1)
+	else:
+		loseLife.emit()
+		
+
+func _on_rain_stream_right_drop_done() -> void:
+	if playerState == playerStates.right && bucketFillLevel < 3:
+		bucketFillLevel += 1
+		playCurrentPlayer()
+		getPoints.emit(1)
+	else:
+		loseLife.emit()
