@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://di1764mxkhlti"]
+[gd_scene load_steps=35 format=3 uid="uid://di1764mxkhlti"]
 
 [ext_resource type="Script" uid="uid://b5oj5gipctqvw" path="res://Scripts/rain.gd" id="1_yepur"]
 [ext_resource type="Texture2D" uid="uid://dhg6e85wb1g04" path="res://Images/LCDBoy.png" id="2_n7lvf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dqrnusd83ehkj" path="res://Scripts/player.gd" id="4_pf7gp"]
 [ext_resource type="Texture2D" uid="uid://ccexrvxh0gob3" path="res://Images/WaterPlayer.png" id="5_1coce"]
 [ext_resource type="Script" uid="uid://dweb3f74j8gr7" path="res://Scenes/RainStream.gd" id="8_evofg"]
+[ext_resource type="Texture2D" uid="uid://bbd2yuxw3qmso" path="res://Images/lives.png" id="9_1coce"]
 [ext_resource type="PackedScene" uid="uid://76q5dj0ihias" path="res://Scenes/rain_drop.tscn" id="9_ts53q"]
 [ext_resource type="FontFile" uid="uid://8cgssymq7s7h" path="res://Fonts/Seven Segment.ttf" id="10_evofg"]
 
@@ -225,6 +226,45 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_evofg"]
+atlas = ExtResource("9_1coce")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ts53q"]
+atlas = ExtResource("9_1coce")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uol4s"]
+atlas = ExtResource("9_1coce")
+region = Rect2(24, 0, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mxx1n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evofg")
+}],
+"loop": true,
+"name": &"life",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ts53q")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uol4s")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
 [node name="Rain" type="Node2D"]
 script = ExtResource("1_yepur")
 
@@ -273,6 +313,7 @@ position = Vector2(168, 116)
 position = Vector2(167, 134)
 
 [node name="Timer" type="Timer" parent="RainStreamLeft"]
+one_shot = true
 
 [node name="RainStreamMiddle" type="Node2D" parent="."]
 position = Vector2(256, 48)
@@ -288,6 +329,7 @@ position = Vector2(-32, 68)
 position = Vector2(-30, 86)
 
 [node name="Timer" type="Timer" parent="RainStreamMiddle"]
+one_shot = true
 
 [node name="RainStreamRight" type="Node2D" parent="."]
 script = ExtResource("8_evofg")
@@ -302,8 +344,10 @@ position = Vector2(261, 117)
 position = Vector2(263, 134)
 
 [node name="Timer" type="Timer" parent="RainStreamRight"]
+one_shot = true
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 1.4
 
 [node name="PlayDemo" type="Label" parent="."]
 offset_left = 96.0
@@ -327,7 +371,47 @@ theme_override_font_sizes/font_size = 12
 text = "0000"
 justification_flags = 131
 
+[node name="Life1" type="AnimatedSprite2D" parent="."]
+position = Vector2(184, 56)
+sprite_frames = SubResource("SpriteFrames_mxx1n")
+animation = &"on"
+
+[node name="Life2" type="AnimatedSprite2D" parent="."]
+position = Vector2(200, 56)
+sprite_frames = SubResource("SpriteFrames_mxx1n")
+animation = &"on"
+
+[node name="Life3" type="AnimatedSprite2D" parent="."]
+position = Vector2(216, 56)
+sprite_frames = SubResource("SpriteFrames_mxx1n")
+animation = &"on"
+
+[node name="RightBtn" type="TextureButton" parent="."]
+offset_left = 336.0
+offset_top = 128.0
+offset_right = 384.0
+offset_bottom = 176.0
+
+[node name="LeftBtn" type="TextureButton" parent="."]
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 64.0
+offset_bottom = 176.0
+
+[node name="ResetBtn" type="TextureButton" parent="."]
+offset_left = 160.0
+offset_top = 192.0
+offset_right = 192.0
+offset_bottom = 216.0
+
+[node name="StartBtn" type="TextureButton" parent="."]
+offset_left = 208.0
+offset_top = 192.0
+offset_right = 240.0
+offset_bottom = 216.0
+
 [connection signal="getPoints" from="WaterPlayer" to="." method="_on_water_player_get_points"]
+[connection signal="loseLife" from="WaterPlayer" to="." method="_on_water_player_lose_life"]
 [connection signal="dropDone" from="RainStreamLeft" to="WaterPlayer" method="_on_rain_stream_left_drop_done"]
 [connection signal="timeout" from="RainStreamLeft/Timer" to="RainStreamLeft" method="_on_timer_timeout"]
 [connection signal="dropDone" from="RainStreamMiddle" to="WaterPlayer" method="_on_rain_stream_middle_drop_done"]
@@ -335,3 +419,7 @@ justification_flags = 131
 [connection signal="dropDone" from="RainStreamRight" to="WaterPlayer" method="_on_rain_stream_right_drop_done"]
 [connection signal="timeout" from="RainStreamRight/Timer" to="RainStreamRight" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="button_down" from="RightBtn" to="WaterPlayer" method="_on_right_btn_button_down"]
+[connection signal="button_down" from="LeftBtn" to="WaterPlayer" method="_on_left_btn_button_down"]
+[connection signal="button_down" from="ResetBtn" to="." method="_on_reset_btn_button_down"]
+[connection signal="button_down" from="StartBtn" to="." method="_on_start_btn_button_down"]

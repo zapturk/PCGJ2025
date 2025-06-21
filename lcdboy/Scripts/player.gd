@@ -41,9 +41,9 @@ func _process(delta: float) -> void:
 			moveRight()
 		buffer = 0.0
 	elif gameState == gameStates.play:
-		if Input.is_action_just_pressed("ui_right"):
+		if Input.is_action_just_pressed("Right"):
 			moveRight()
-		elif Input.is_action_just_pressed("ui_left"):
+		elif Input.is_action_just_pressed("Left"):
 			moveLeft()
 
 func startPlay() -> void:
@@ -66,6 +66,7 @@ func allOff() -> void:
 	right.play("off")
 
 func startDemo() -> void:
+	bucketFillLevel = 0
 	gameState = gameStates.demo
 	playCurrentPlayer()
 	
@@ -162,3 +163,13 @@ func _on_rain_stream_right_drop_done() -> void:
 		getPoints.emit(1)
 	else:
 		loseLife.emit()
+
+
+func _on_left_btn_button_down() -> void:
+	if gameState == gameStates.play:
+		moveLeft()
+
+
+func _on_right_btn_button_down() -> void:
+	if gameState == gameStates.play:
+		moveRight()
