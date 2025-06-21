@@ -1,14 +1,21 @@
-[gd_scene load_steps=35 format=3 uid="uid://di1764mxkhlti"]
+[gd_scene load_steps=42 format=3 uid="uid://di1764mxkhlti"]
 
 [ext_resource type="Script" uid="uid://b5oj5gipctqvw" path="res://Scripts/rain.gd" id="1_yepur"]
 [ext_resource type="Texture2D" uid="uid://dhg6e85wb1g04" path="res://Images/LCDBoy.png" id="2_n7lvf"]
 [ext_resource type="Texture2D" uid="uid://dhmy1h6lhckbh" path="res://Images/RainBackground.png" id="3_pf7gp"]
 [ext_resource type="Script" uid="uid://dqrnusd83ehkj" path="res://Scripts/player.gd" id="4_pf7gp"]
 [ext_resource type="Texture2D" uid="uid://ccexrvxh0gob3" path="res://Images/WaterPlayer.png" id="5_1coce"]
+[ext_resource type="AudioStream" uid="uid://b34uubo4tgkxl" path="res://Sound/miss1.wav" id="6_esu52"]
+[ext_resource type="AudioStream" uid="uid://c65c47ychqvx1" path="res://Sound/move1.wav" id="6_mxx1n"]
+[ext_resource type="AudioStream" uid="uid://fedj2rmtj73" path="res://Sound/empty1.wav" id="7_fwwhf"]
+[ext_resource type="AudioStream" uid="uid://bp0i3xjrcgyfn" path="res://Sound/bucket1.wav" id="8_equc5"]
 [ext_resource type="Script" uid="uid://dweb3f74j8gr7" path="res://Scenes/RainStream.gd" id="8_evofg"]
+[ext_resource type="AudioStream" uid="uid://djrcgmk6iehpr" path="res://Sound/rain1.wav" id="8_ts53q"]
 [ext_resource type="Texture2D" uid="uid://bbd2yuxw3qmso" path="res://Images/lives.png" id="9_1coce"]
 [ext_resource type="PackedScene" uid="uid://76q5dj0ihias" path="res://Scenes/rain_drop.tscn" id="9_ts53q"]
+[ext_resource type="AudioStream" uid="uid://d4dihtb1afw2s" path="res://Sound/rain2.wav" id="9_uol4s"]
 [ext_resource type="FontFile" uid="uid://8cgssymq7s7h" path="res://Fonts/Seven Segment.ttf" id="10_evofg"]
+[ext_resource type="AudioStream" uid="uid://oallcuur48nr" path="res://Sound/rain3.wav" id="10_uol4s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5k3ys"]
 atlas = ExtResource("5_1coce")
@@ -300,6 +307,22 @@ position = Vector2(172, 148)
 sprite_frames = SubResource("SpriteFrames_7mwhx")
 animation = &"3"
 
+[node name="Miss" type="AudioStreamPlayer2D" parent="WaterPlayer"]
+position = Vector2(172, 148)
+stream = ExtResource("6_esu52")
+volume_db = 0.5
+
+[node name="Move" type="AudioStreamPlayer2D" parent="WaterPlayer"]
+stream = ExtResource("6_mxx1n")
+
+[node name="Bucket" type="AudioStreamPlayer2D" parent="WaterPlayer"]
+stream = ExtResource("8_equc5")
+volume_db = 1.0
+
+[node name="Empty" type="AudioStreamPlayer2D" parent="WaterPlayer"]
+stream = ExtResource("7_fwwhf")
+volume_db = -5.0
+
 [node name="RainStreamLeft" type="Node2D" parent="."]
 script = ExtResource("8_evofg")
 
@@ -314,6 +337,9 @@ position = Vector2(167, 134)
 
 [node name="Timer" type="Timer" parent="RainStreamLeft"]
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="RainStreamLeft"]
+stream = ExtResource("8_ts53q")
 
 [node name="RainStreamMiddle" type="Node2D" parent="."]
 position = Vector2(256, 48)
@@ -331,6 +357,9 @@ position = Vector2(-30, 86)
 [node name="Timer" type="Timer" parent="RainStreamMiddle"]
 one_shot = true
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="RainStreamMiddle"]
+stream = ExtResource("9_uol4s")
+
 [node name="RainStreamRight" type="Node2D" parent="."]
 script = ExtResource("8_evofg")
 
@@ -345,6 +374,9 @@ position = Vector2(263, 134)
 
 [node name="Timer" type="Timer" parent="RainStreamRight"]
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="RainStreamRight"]
+stream = ExtResource("10_uol4s")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.4

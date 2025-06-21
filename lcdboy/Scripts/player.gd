@@ -24,6 +24,10 @@ enum playerStates {
 @onready var bucketFillLevel := 0
 @onready var demoBuffer := 1.0
 @onready var buffer := 0.0
+@onready var sfx := $Move
+@onready var sfxEmpty := $Empty
+@onready var sfxBucket := $Bucket
+@onready var sfxMiss := $Miss
 
 signal getPoints(points: int)
 signal loseLife()
@@ -76,6 +80,9 @@ func playDump() -> void:
 	middle.play("off")
 	right.play("off")
 	
+	if bucketFillLevel != 0:
+		sfxEmpty.play()
+	
 	match bucketFillLevel:
 		1:
 			getPoints.emit(2)
@@ -118,6 +125,9 @@ func playCurrentPlayer() -> void:
 	
 
 func moveLeft() -> void:
+	if gameState == gameStates.play:
+		sfx.pitch_scale = randf_range(.9, 1.1)
+		sfx.play()
 	match playerState:
 		playerStates.left:
 			playerState = playerStates.dump
@@ -129,6 +139,9 @@ func moveLeft() -> void:
 	playCurrentPlayer()
 	
 func moveRight() -> void:
+	if gameState == gameStates.play:
+		sfx.pitch_scale = randf_range(.9, 1.1)
+		sfx.play()
 	match playerState:
 		playerStates.dump:
 			playerState = playerStates.left
@@ -141,27 +154,42 @@ func moveRight() -> void:
 
 func _on_rain_stream_left_drop_done() -> void:
 	if playerState == playerStates.left && bucketFillLevel < 3:
+		if gameState == gameStates.play:
+			sfxBucket.pitch_scale = randf_range(.9, 1.1)
+			sfxBucket.play()
 		bucketFillLevel += 1
 		playCurrentPlayer()
 		getPoints.emit(1)
 	else:
+		if gameState == gameStates.play:
+			sfxMiss.play()
 		loseLife.emit()
 
 func _on_rain_stream_middle_drop_done() -> void:
 	if playerState == playerStates.middle && bucketFillLevel < 3:
+		if gameState == gameStates.play:
+			sfxBucket.pitch_scale = randf_range(.9, 1.1)
+			sfxBucket.play()
 		bucketFillLevel += 1
 		playCurrentPlayer()
 		getPoints.emit(1)
 	else:
+		if gameState == gameStates.play:
+			sfxMiss.play()
 		loseLife.emit()
 		
 
 func _on_rain_stream_right_drop_done() -> void:
 	if playerState == playerStates.right && bucketFillLevel < 3:
+		if gameState == gameStates.play:
+			sfxBucket.pitch_scale = randf_range(.9, 1.1)
+			sfxBucket.play()
 		bucketFillLevel += 1
 		playCurrentPlayer()
 		getPoints.emit(1)
 	else:
+		if gameState == gameStates.play:
+			sfxMiss.play()
 		loseLife.emit()
 
 
